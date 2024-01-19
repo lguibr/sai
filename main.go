@@ -38,10 +38,10 @@ func main() {
 	if len(os.Args) > 1 {
 		userMessage = strings.Join(os.Args[1:], " ")
 	} else {
-		userMessage = "Given my last 10 commands and the user operational system and the current path what is the most likely command to be sent:"
+		userMessage = "Given my last 20 commands and the user operational system and the current path what is the most likely command to be sent next to the terminal even if you are not sure about it?"
 	}
 
-	systemMessage := fmt.Sprintf("You are a bash completion tool and will receive a question and should answer it with a raw text with a valid command knowing that the user is in the path %s, is using the OS: %s, and the last 10 commands sent are:\n%s DON'T FORMAT OR ADD CODE BLOCK JUST RAW TEXT SINGLE LINE!", currentPath, operatingSystem, history)
+	systemMessage := fmt.Sprintf("You are a bash completion tool and will receive a question and should answer it with a raw text with a valid command knowing that the user is in the path %s, is using the OS: %s, and the last 20 commands sent are:\n%s DON'T FORMAT OR ADD CODE BLOCK JUST RAW TEXT SINGLE LINE!", currentPath, operatingSystem, history)
 
 	requestPayload := OpenAIRequest{
 		Model: "gpt-4",
@@ -95,7 +95,7 @@ func main() {
 }
 
 func getLastTenBashCommand() (string, error) {
-	cmd := exec.Command("bash", "-c", "history | tail -n 10")
+	cmd := exec.Command("bash", "-c", "history | tail -n 20")
 	output, err := cmd.Output()
 	if err != nil {
 		return "", err
