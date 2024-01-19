@@ -14,6 +14,11 @@ import (
 
 const OpenAIAPIURL = "https://api.openai.com/v1/chat/completions"
 
+const (
+	ColorGreen = "\033[32m"
+	ColorReset = "\033[0m"
+)
+
 type OpenAIRequest struct {
 	Model    string                   `json:"model"`
 	Messages []map[string]interface{} `json:"messages"`
@@ -91,7 +96,8 @@ func main() {
 		return
 	}
 
-	fmt.Printf("\n\n%s\n\n", command)
+	fmt.Printf("\n%s%s%s\n", ColorGreen, command, ColorReset)
+
 }
 
 func getLastTenBashCommand() (string, error) {

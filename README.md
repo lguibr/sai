@@ -27,6 +27,8 @@ Ensure that Go is installed on your system before running the installation scrip
 
 ## Usage
 
+![Example Usage](./examples.gif)
+
 To use Sai, simply type sai followed by your query in quotes. For example:
 
 ```
