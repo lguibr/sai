@@ -1,85 +1,52 @@
-# Comai - Commit Message AI
+# Sai - Shell AI Assistant
 
-Comai is a command-line tool that helps you generate informative and relevant commit messages for your Git repositories using GPT-4 by OpenAI. It analyzes your staged changes, combines it with a high-level explanation provided by you, and creates a commit message based on this information. Additionally, it supports custom commit message templates and a back command to reset to previous commits. This not only saves you time and effort but also ensures a consistent and meaningful commit history.
+Sai is a command-line tool designed to enhance your shell experience by providing intelligent and context-aware command suggestions using OpenAI's GPT-4 model. Whether you're working with git, navigating directories, or performing complex shell operations, Sai offers a helping hand.
 
-![ScreenShoot](comai.gif)
+## Features
 
-# Prerequisites
-
-- Go 1.20 or later
-- An OpenAI API key (get one at https://beta.openai.com/signup/)
+- **AI-Powered Command Suggestions:** Leverages the power of GPT-4 to understand and suggest relevant shell commands.
+- **Context-Aware:** Takes into account your current directory, operating system, and recent command history to provide accurate suggestions.
+- **User-Friendly:** Simple and intuitive to use, integrating seamlessly into your existing shell workflow.
 
 ## Installation
 
-1. Clone the repository:
+To install Sai, follow these steps:
 
 ```bash
-git clone https://github.com/lguibr/comai.git
+# Clone the repository
+git clone https://github.com/lguibr/sai.git
 
+# Change directory
+cd sai
+
+# Run the installation script
+./install.sh
 ```
 
-2. Change to the project directory:
-
-```bash
-cd comai
-```
-
-3. Run the installation script:
-
-```bash
-chmod +x install.sh && ./install.sh
-```
-
-The install.sh script will build and install the comai binary to /usr/local/bin. If prompted for your password, enter it to grant sudo access.
-
-# Configuration
-
-## Environment Variables
-
-Before using Comai, you need to set the **OPENAI_API_KEY** and optionally the **TEMPLATE_COMMIT** environment variables. The TEMPLATE_COMMIT variable allows you to define a global template for your commit messages.
-
-```bash
-export OPENAI_API_KEY="your_api_key"
-export TEMPLATE_COMMIT="My global custom template: {message}"
-```
-
-## Template Configuration
-
-### Creating a Template for the Repository
-
-You can create a custom template specific to the repository using the `create-template` command. This template will override the global template set in the TEMPLATE_COMMIT environment variable if present.
-
-```bash
-comai create-template "My repository-specific template: {message}"
-```
-
-This command will create a hidden file inside the `.git` directory to store the template.
+Ensure that Go is installed on your system before running the installation script.
 
 ## Usage
 
-### Generating Commit Messages
+To use Sai, simply type sai followed by your query in quotes. For example:
 
-```bash
-comai "This is a high level explanation of my commit"
+```
+sai "how to undo the last git commit"
+git reset HEAD~1
 ```
 
-- Use the -a or --add flag to stage all changes.
-- Use the -c or --commit flag to automatically create the commit.
-- Use the -t or --template flag for custom templates or utilize the TEMPLATE_COMMIT environment variable. If no template is provided, a default or global template will be used.
+## Configuration
 
-### Resetting Commits
-
-Use the `back` command to reset to previous commits. This is equivalent to `git reset HEAD~n`, where `n` is the number of commits to reset.
+Before using Sai, you need to set your OpenAI API key as an environment variable:
 
 ```bash
-comai back 1 # Resets one commit back
-comai back 2 # Resets two commits back
+
+export OPENAI_API_KEY='your-api-key-here'
 ```
 
-## Contributing
+You may add this line to your .bashrc, .zshrc, or equivalent shell configuration file to make it persistent.
 
-We welcome contributions to the Comai project! Please feel free to submit issues, feature requests, or pull requests.
+Contributions
+Contributions are welcome! If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
-## License
-
-This project is released under the MIT License.
+Licensing
+The code in this project is licensed under MIT license. See LICENSE for more information.
